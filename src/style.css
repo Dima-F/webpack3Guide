@@ -1,0 +1,9 @@
+
+@font-face {
+  font-family: 'MyFont';
+  src:url('./someFont1.ttf') format('ttf');
+}
+.hello {
+    color: red;
+    font-family: 'MyFont';
+  }
