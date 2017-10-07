@@ -1,19 +1,14 @@
 import _ from 'lodash';
-import './style.css';
-import Snake from './snake.jpeg';
-import Data from './data.xml';
-
+ import printMe from './print.js';
 
 function component() {
-  var element = document.createElement('div');
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  element.classList.add('hello');
 
-  // adding image
-  var mySnake = new Image();
-  mySnake.src = Snake;
-  element.appendChild(mySnake);
-  console.log(Data);
+  var element = document.createElement('div');
+  var btn = document.createElement('button');
+  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  btn.innerHTML = 'Click me and check the console!';
+  btn.onclick = printMe;
+  element.appendChild(btn);
   return element;
 }
 
