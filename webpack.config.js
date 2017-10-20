@@ -23,8 +23,7 @@ var config = {
     new webpack.HotModuleReplacementPlugin(),
     new WriteFilePlugin(),
     new UglifyJSPlugin()
-  ],
-
+  ]
 };
 
 module.exports = config;
