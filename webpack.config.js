@@ -1,29 +1,24 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const WriteFilePlugin = require('write-file-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
-var config = {
+module.exports = {
   entry: {
-    app: './src/index.js'
+    index: './src/index.js'
+    //another: './src/another-module.js'
   },
+  plugins: [
+    new HTMLWebpackPlugin({
+      title: 'Code Splitting'
+    })
+    /*
+    new webpack.optimize.CommonsChunkPlugin({
+       name: 'common' // Specify the common bundle's name.
+     })*/
+  ],
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/'
-  },
-  devtool: 'inline-source-map',
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Output Managment'
-    }),
-    new CleanWebpackPlugin(['dist']),
-    new webpack.HotModuleReplacementPlugin(),
-    new WriteFilePlugin(),
-    new UglifyJSPlugin()
-  ]
+    path: path.resolve(__dirname, 'dist')
+  }
 };
 
-module.exports = config;
