@@ -1,24 +1,10 @@
-import { cube } from './math.js';
-import _ from 'lodash';
-
-
-function component() {
-  var element = document.createElement('pre');
-  element.innerHTML = [
-    'Hello webpack!',
-    '5 cubed is equal to -> ' + cube(5)
-  ].join('\n\n');
-  return element;
+function getComponent(){
+  return import('lodash').then(_=>{
+    var element = document.createElement('div');
+    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    return element;
+  }).catch(err=>'An err ocured while loading component!');
 }
-
-console.log("main.js");
-
-document.body.appendChild(component());
-
-/*
-if (module.hot) {
-  module.hot.accept('./print.js', function() {
-    console.log('Accepting the updated printMe module!');
-    printMe();
-  })
-*/
+getComponent().then(component=>{
+  document.body.appendChild(component);
+});
