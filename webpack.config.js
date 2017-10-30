@@ -1,29 +1,18 @@
-const path = require('path');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
-  entry: {
-    index: './src/index.js',
-    vendor:['lodash']
-    //another: './src/another-module.js'
-  },
-  plugins: [
-    new CleanWebpackPlugin(['dist']),
-    new HTMLWebpackPlugin({
-      title: 'Caching'
-    }),
-    new webpack.HashedModuleIdsPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({
-       name: 'vendor'
-     }),
-     new webpack.optimize.CommonsChunkPlugin({
-        name: 'runtime'
-      })
-  ],
+  entry: './src/index.js',
   output: {
-    filename: '[name].[chunkhash].js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'webpack-numbers.js',
+    library:'webpackNumbers'
+  },
+  externals:{
+    lodash:{
+      commonjs:'lodash',
+      commonjs2:'lodash',
+      amd:'lodash',
+      root:'_'
+    }
   }
 };
